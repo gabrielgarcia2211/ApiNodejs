@@ -35,7 +35,7 @@
         
         <div style ="padding:10px">
           <a type="button" class="btn btn-warning" href='/'>Volver</a>
-          <a type="button" class="btn btn-primary" href='/res/products/create'>Agregar Producto</a>
+          <a type="button" class="btn btn-primary" href='/res/user/create'>Agregar Usuario</a>
          
         </div>
 
@@ -44,8 +44,9 @@
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>
-                <th scope="col">Precio</th>
-                <th scope="col">Cantidad</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Direccion</th>
+                <th scope="col">Edad</th>
                 <th scope="col" style="text-align: center">Acciones</th>
               </tr>
             </thead>
@@ -55,8 +56,9 @@
                 <tr>
                     <th scope="row" style ="padding:10px">#{cont++}</th>
                     <td>#{data.nombre}</td>
-                    <td>#{data.precio}</td>
-                    <td>#{data.cantidad}</td>
+                    <td>#{data.apellido}</td>
+                    <td>#{data.direccion}</td>
+                    <td>#{data.edad}</td>
                     <td style="text-align: center;">
                     <a type="button" class="btn btn-secondary" href='/res/user/update/#{data._id}'> Editar <i class="far fa-edit"></i></a>
                     form(id="form-agregar-producto" action= `/res/user/${data._id}`  method="post" style="display: inline-block;margin-left:10px")

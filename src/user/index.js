@@ -3,7 +3,7 @@ const express = require("express");
 const { UserController } = require("./controller");
 const router = express.Router();
 
-module.exports.ProductsRES = (app) => {
+module.exports.UserRES = (app) => {
   router
   .get("/", UserController.getUsers)
   .get('/create', UserController.ViewCreateUser)

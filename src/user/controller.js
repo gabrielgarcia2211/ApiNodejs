@@ -84,7 +84,7 @@ module.exports.UserController = {
         "https://apirest-nod.herokuapp.com/api/user/update",
         {
           "_id": req.body.id,
-          "nombre": req.body.id,
+          "nombre": req.body.nombre,
           "apellido":  req.body.apellido,
           "direccion":  req.body.direccion,
           "edad":  req.body.edad,
