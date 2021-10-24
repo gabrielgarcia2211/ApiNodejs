@@ -1,6 +1,5 @@
 const axios = require("axios");
 
-
 var products = getProducts = async (req, res) => {
   try {
     //Metodo GET PRODUCTOS
@@ -10,6 +9,8 @@ var products = getProducts = async (req, res) => {
     let {
       data: { body },
     } = resp;
+    listProducts = body;
+
     //console.log(body);
     res.render("producto/index", { body });
   } catch (error) {
@@ -36,7 +37,9 @@ var idProduct = getProduct = async (req, res) => {
   }
 };
 
+
 module.exports.ProductController = {
+
   getProduct:idProduct,
 
   getProducts:products,

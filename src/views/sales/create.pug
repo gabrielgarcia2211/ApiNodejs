@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienvenido</title>
+    <title>Crear Producto</title>
 
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -30,30 +30,29 @@
             </a>
         </div>
     </nav>
-    <br><br><br><br>
-    <div class=" m-0 row justify-content-center">
-        
-        
+    <br><br><br>
+    <div class="container">
+        <div class="col" style="border: 2px solid #26262e;padding:20px;-webkit-box-shadow: 5px 5px 15px 5px #000000; box-shadow: 5px 5px 15px 5px #000000;">
+            <br>
+            <h1 style ="margin-bottom:20px">AGREGAR PRODUCTO</h1>
 
-        <div class="card" style="width: 40rem;">
-        <div style ="padding:10px;margin-bottom:10px">
-          <h1 style="text-align:center">Selecciona un Servicio</h1>
-        </div>
-        <img class="card-img-top" src="https://miro.medium.com/max/720/1*ay9nx1XdZ3AOzx5Ev8xJEg.png" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">CRUD - APIREST</h5>
-            <p class="card-text">Cosumo de ENDPOINTS</p>
-        </div>
-        <ul class="list-group list-group-flush">
-            <a href="/res/products/" class="btn btn-outline-primary m-2" style="text-decoration:none;color:black">Productos</a></button>
-            <a href="/res/user/"  class="btn btn-outline-warning m-2" style="text-decoration:none;color:black">Usuarios</a></button>
-            <a href="/res/sales/" class="btn btn-outline-success m-2" style="text-decoration:none;color:black">Ventas</a></button>
-        </ul>
-        <div class="card-body" style="text-align:center">
-            <a href="https://github.com/gabrielgarcia2211/ApiRestNodejs" class="btn"><i class="fab fa-github fa-2x"></i></a>  
-        </div>
-        </div>
+            form(id="form-agregar-producto" action="/res/sales/create" method="post")
+                <select class="form-select" style="margin:20px" aria-label="Default select example" name="idU">
+                 each user in users
+                    option(value=user._id) #{user.nombre}
+                 </select>
 
+                <select class="form-select" style="margin:20px" aria-label="Default select example" name="idP">
+                 each product in products
+                    option(value=product._id) #{product.nombre}
+                </select>
+
+                input(type="submit" class="btn btn-primary" style="margin:20px" value="Guardar")  
+            </form>
+
+           
+            <br>
+        </div>
     </div>
     <br><br>
 </body>
