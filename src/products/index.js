@@ -4,6 +4,7 @@ const { ProductController } = require("./controller");
 const router = express.Router();
 
 module.exports.ProductsRES = (app) => {
+  
   router
   .get("/", ProductController.getProducts)
   .get('/create', ProductController.ViewCreateProduct)

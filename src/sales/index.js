@@ -3,7 +3,7 @@ const express = require("express");
 const { VentaController } = require("./controller");
 const router = express.Router();
 
-module.exports.SalesRES = (app) => {
+module.exports.SaleRES = (app) => {
   router
   .get("/", VentaController.getSales)
   .get('/create', VentaController.ViewCreateSale)

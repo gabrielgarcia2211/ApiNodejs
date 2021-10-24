@@ -1,39 +1,6 @@
 const axios = require("axios");
 const { UserController } = require("../user/controller");
 
-
-
-var products = getProducts = async (req, res) => {
-  try {
-    //Metodo GET PRODUCTOS
-    let resp = await axios.get(
-      "https://apirest-nod.herokuapp.com/api/products"
-    );
-    let {
-      data: { body },
-    } = resp;
-    return body;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-var users = getUsers = async (req, res) => {
-  try {
-    //Metodo GET User
-    let resp = await axios.get(
-      "https://apirest-nod.herokuapp.com/api/user"
-    );
-    let {
-      data: { body },
-    } = resp;
-    return body;
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-
 var sends = getSales = async (req, res) => {
   try {
     //Metodo GET VENTA
@@ -71,18 +38,24 @@ var idSale = getSale = async (req, res) => {
 };
 
 module.exports.VentaController = {
-  getProducts:products,
-
-  getUsers:users,
-
   getSale:idSale,
 
   getSales:sends,
   
   ViewCreateSale: async (req, res) => {
     try {
-      let users =    await getUsers(req,res);
-      let products =    await getProducts(req,res);
+      let data1 = await axios.get(
+        "https://apirest-nod.herokuapp.com/api/user"
+      );
+      var users = data1.data.body;
+
+
+      let data2 = await axios.get(
+        "https://apirest-nod.herokuapp.com/api/products"
+      );
+      var products = data2.data.body;
+
+
       res.render("sales/create", {users, products});
     } catch (error) {
       console.log(error);
