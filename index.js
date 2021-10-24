@@ -14,9 +14,13 @@ app.use(bodyParser.urlencoded({
 //Trae la ruta de config global del proyecto
 const { ProductsRES } = require("./src/products/index");
 const { UserRES } = require("./src/user/index");
+const { IndexAPI } = require("./src/index/index");
+
 //Modulos
+IndexAPI(app);
 ProductsRES(app);
 UserRES(app);
+
 
 
 // Indica el directorio donde se encuentran los archivos de las vistas ('views')
@@ -29,6 +33,7 @@ app.set('view engine', 'pug');
 app.get("/", (req, res) => {
   res.render("index");
 });
+
 
 const PORT = 3000;
 
