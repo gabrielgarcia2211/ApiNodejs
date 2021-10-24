@@ -14,16 +14,12 @@ app.use(bodyParser.urlencoded({
 //Trae la ruta de config global del proyecto
 const { ProductsRES } = require("./src/products/index");
 const { UserRES } = require("./src/user/index");
-const { SalesRES } = require("./src/ventas/index");
 const { IndexAPI } = require("./src/index/index");
-
-
 
 //Modulos
 IndexAPI(app);
 ProductsRES(app);
 UserRES(app);
-SalesRES(app);
 
 
 
