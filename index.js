@@ -39,7 +39,7 @@ app.set('view engine', 'pug');
 });
 */
 
-const PORT = process.env.PORT || 3000;
+const PORT = 3100;
 
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en el puerto http://localhost:${PORT}`);
