@@ -12,14 +12,20 @@ app.use(bodyParser.urlencoded({
 
 
 //Trae la ruta de config global del proyecto
+//const { IndexAPI } = require("./src/index/index");
+
+
 const { ProductsRES } = require("./src/products/index");
+ProductsRES(app);
 const { UserRES } = require("./src/user/index");
-const { IndexAPI } = require("./src/index/index");
+UserRES(app);
+
 
 //Modulos
-IndexAPI(app);
-ProductsRES(app);
-UserRES(app);
+//IndexAPI(app);
+
+
+
 
 
 
@@ -30,10 +36,10 @@ app.set("views", "./src/views");
 app.set('view engine', 'pug');
 
 
-/*app.get("/", (req, res) => {
+app.get("/", (req, res) => {
   res.render("index");
 });
-*/
+
 
 const PORT = 3100;
 
