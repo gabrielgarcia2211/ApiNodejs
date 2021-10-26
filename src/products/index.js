@@ -8,6 +8,8 @@ module.exports.ProductsRES = (app) => {
   router
   .get("/", ProductController.getProducts)
   .get('/create', ProductController.ViewCreateProduct)
+  .get('/reportaux', ProductController.ViewReportProductAux)
+  .get('/report', ProductController.ViewReportProduct)
   .get('/update/:id', ProductController.ViewUpdateProduct)
   .get("/:id", ProductController.getProduct)
   .post('/create', ProductController.createProduct)

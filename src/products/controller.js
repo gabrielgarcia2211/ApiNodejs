@@ -1,7 +1,10 @@
 const axios = require("axios");
+const fs = require("fs");
+const { excelUtils } = require("./utils");
 
+var dataProducts = null;
 
-var products = getProducts = async (req, res) => {
+var products = (getProducts = async (req, res) => {
   try {
     //Metodo GET PRODUCTOS
     let resp = await axios.get(
@@ -10,14 +13,14 @@ var products = getProducts = async (req, res) => {
     let {
       data: { body },
     } = resp;
-    //console.log(body);
+    dataProducts = body;
     res.render("producto/index", { body });
   } catch (error) {
     console.log(error);
   }
-};
+});
 
-var idProduct = getProduct = async (req, res) => {
+var idProduct = (getProduct = async (req, res) => {
   try {
     const {
       params: { id },
@@ -34,14 +37,36 @@ var idProduct = getProduct = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-};
+});
 
 module.exports.ProductController = {
-  getProduct:idProduct,
+  getProduct: idProduct,
 
-  getProducts:products,
-  
-  ViewCreateProduct:(req, res) => {
+  getProducts: products,
+
+  ViewReportProductAux: async (req, res) => {
+    try {
+      //Metodo GET PRODUCTOS
+      await axios.get(
+        "http://apirest-nod.herokuapp.com/api/products/report"
+      );
+      
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
+  ViewReportProduct: async (req, res) => {
+    try {
+      //Metodo GET PRODUCTOS
+      await getProducts();
+      excelUtils.excelGenerate(dataProducts, "data", res);
+    } catch (error) {
+      console.log(error);
+    }
+  },
+
+  ViewCreateProduct: (req, res) => {
     try {
       res.render("producto/create");
     } catch (error) {
@@ -55,13 +80,12 @@ module.exports.ProductController = {
       let resp = await axios.post(
         "https://apirest-nod.herokuapp.com/api/products",
         {
-          "nombre": req.body.nombre,
-          "precio": req.body.precio,
-          "cantidad": req.body.cantidad
+          nombre: req.body.nombre,
+          precio: req.body.precio,
+          cantidad: req.body.cantidad,
         }
       );
-      await getProducts(req,res);
-     
+      await getProducts(req, res);
     } catch (error) {
       console.log(error);
     }
@@ -72,8 +96,8 @@ module.exports.ProductController = {
       const {
         params: { id },
       } = req;
-      
-      let data = await getProduct(req,res);
+
+      let data = await getProduct(req, res);
       res.render("producto/edit", { data });
     } catch (error) {
       console.log(error);
@@ -86,26 +110,22 @@ module.exports.ProductController = {
       let resp = await axios.post(
         "https://apirest-nod.herokuapp.com/api/products/update",
         {
-            "_id": req.body.id,
-            "nombre": req.body.nombre,
-            "precio": req.body.precio,
-            "cantidad": req.body.cantidad
-        },
+          _id: req.body.id,
+          nombre: req.body.nombre,
+          precio: req.body.precio,
+          cantidad: req.body.cantidad,
+        }
       );
-
-      //res.render("index", { body });
-      //res.json(body);
       let {
         data: { message },
       } = resp;
-      await getProducts(req,res);
+      await getProducts(req, res);
     } catch (error) {
       console.log(error);
     }
   },
 
-  deleteProduct: async(req,res) => {
-  
+  deleteProduct: async (req, res) => {
     try {
       var id = req.params.id;
       //Metodo GET PRODUCTO
@@ -116,10 +136,9 @@ module.exports.ProductController = {
         data: { message },
       } = resp;
       console.log(message);
-      await getProducts(req,res);
+      await getProducts(req, res);
     } catch (error) {
       console.log(error);
     }
   },
-
 };
